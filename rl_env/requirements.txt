@@ -1,0 +1,6 @@
+numpy
+matplotlib
+torch
+gymnasium
+stable-baseline3
+tensorboard
