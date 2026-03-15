@@ -1,0 +1,37 @@
+PHẦN 4 - MDP & DYNAMIC PROGRAMMING (CARTPOLE)
+1) Vì sao CartPole không phải MDP hữu hạn?
+   - Trạng thái liên tục: Các biến như vị trí và góc là số thực (ví dụ: 1.234...).
+   - Số lượng trạng thái vô cực: Vì là số thực nên có vô số giá trị có thể xảy ra, không thể liệt kê hết vào một danh sách hữu hạn.
+2) Vì sao không thể áp dụng DP trực tiếp?
+   - Không có bảng tra cứu: DP cần bảng lưu giá trị cho mọi trạng thái.
+   - Với vô số trạng thái, bảng sẽ vô hạn; phép cộng tổng trên trạng thái kế tiếp trong môi trường liên tục trở thành tích phân rất khó tính.
+   - Chưa biết quy luật: DP cần biết trước xác suất chuyển trạng thái (P) và phần thưởng (R), trong khi CartPole không cung cấp sẵn.
+3) Nếu tăng số bins thì sao?
+   - Tăng bins => độ phân giải cao hơn, nhưng số trạng thái tăng nhanh (chi phí lớn).
+4) Trade-off giữa độ chính xác và chi phí?
+   - Bins lớn hơn thì gần đúng hơn, nhưng tốn bộ nhớ/CPU và cần nhiều mẫu hơn.
+5) Cần bao nhiêu samples để ước lượng tốt?
+   - Tùy thuộc độ phủ. Kết quả hiện tại (10000 episode) quan sát 367 trạng thái rời rạc và 2917 chuyển tiếp, vẫn còn thưa. Cần nhiều mẫu hơn để phủ tốt.
+6) Model ước lượng có chính xác không?
+   - Chỉ là xấp xỉ. Lấy mẫu ngẫu nhiên có thể bỏ sót các chuyển tiếp hiếm.
+7) Phương pháp nào hội tụ nhanh hơn? Phương pháp nào tốn tài nguyên hơn?
+   - Policy Iteration hội tụ nhanh hơn (46 vòng lặp) so với Value Iteration (500 vòng lặp).
+   - Policy Iteration mỗi vòng lặp nặng hơn (evaluation + improvement), Value Iteration nhẹ hơn mỗi vòng lặp.
+8) So sánh policy DP với Random Agent (dựa vào kết quả đã chạy):
+   - Random Agent: reward TB = 22.75.
+   - Value Iteration: reward TB = 102.1.
+   - Policy Iteration: reward TB = 46.7.
+   => DP tốt hơn Random Agent rõ rệt trong kết quả này.
+
+PHẦN 5 - PHÂN TÍCH BẢN CHẤT THUẬT TOÁN
+1) DP có cần environment model không?
+   - Có. DP cần P(s'|s,a) và R(s,a) để cập nhật Bellman.
+2) Vì sao phải ước lượng transition trước khi áp dụng DP?
+   - Nếu không có P(s'|s,a), không thể tính giá trị kỳ vọng trong Bellman backup.
+3) Nếu state space rất lớn (ví dụ 100.000 trạng thái) thì DP còn khả thi không?
+   - Thường không. Độ phức tạp tăng theo |S|*|A|, bộ nhớ và thời gian rất lớn.
+4) Vì sao DP khó áp dụng trực tiếp cho môi trường continuous?
+   - Số trạng thái vô hạn, phải rời rạc hóa -> sai số xấp xỉ và chi phí tính toán lớn.
+5) Ưu/nhược điểm lớn nhất của model-based DP?
+   - Ưu: ổn định, không cần nhiều tương tác nếu có model tốt.
+   - Nhược: cần model chính xác; rời rạc hóa/ước lượng sai sẽ làm kết quả kém.

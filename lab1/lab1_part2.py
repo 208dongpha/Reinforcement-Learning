@@ -2,6 +2,42 @@ import gymnasium as gym
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import sys
+
+class Logger:
+    def __init__(self, filename):
+        self.terminal = sys.stdout
+        self.log = open(filename, "a")
+
+    def write(self, message):
+        self.terminal.write(message)  # In ra console
+        self.log.write(message)       # Ghi vào file
+
+    def flush(self):
+        self.terminal.flush()
+        self.log.flush()
+
+
+# Explore environment
+def explore_env(env_name, log_file=None):
+    env = gym.make(env_name)
+
+    msgs = []
+    msgs.append(f"Environment: {env_name}")
+    msgs.append(f"Observation space: {env.observation_space}")
+    msgs.append(f"Action space: {env.action_space}")
+
+    obs, info = env.reset()
+    msgs.append(f"Initial observation: {obs}")
+    msgs.append(f"Observation dimension: {len(obs)}")
+
+    for msg in msgs:
+        print(msg)
+        if log_file is not None:
+            with open(log_file, "a") as f:
+                f.write(msg + "\n")
+
+    env.close()
 
 # Random Agent
 def random_agent(env_name, episodes=100, log_file=None):
@@ -64,7 +100,6 @@ def plot_learning_curve(rewards, env_name, log_dir, window=10):
     print(f"Saved learning curve image: {image_path}")
     plt.close()
 
-# Main
 if __name__ == "__main__":
     log_dir = "lab1/logs/lab1_part2"
     os.makedirs(log_dir, exist_ok=True)
@@ -73,17 +108,24 @@ if __name__ == "__main__":
     # Xóa nội dung cũ của log file nếu tồn tại
     open(log_file, "w").close()
 
+    # Redirect tất cả print vào file log
+    sys.stdout = Logger(log_file)
+
     episodes = 100
     window = 10
 
+    # Explore environments
+    explore_env("CartPole-v1")
+    explore_env("MountainCar-v0")
+
     # CartPole
-    cartpole_rewards = random_agent("CartPole-v1", episodes, log_file)
+    cartpole_rewards = random_agent("CartPole-v1", episodes)
     np.save(os.path.join(log_dir, "cartpole_reward.npy"), cartpole_rewards)
     print(f"CartPole average reward: {np.mean(cartpole_rewards):.2f}")
     plot_learning_curve(cartpole_rewards, "CartPole-v1", log_dir, window)
 
     # MountainCar
-    mountain_rewards = random_agent("MountainCar-v0", episodes, log_file)
+    mountain_rewards = random_agent("MountainCar-v0", episodes)
     np.save(os.path.join(log_dir, "mountain_reward.npy"), mountain_rewards)
     print(f"MountainCar average reward: {np.mean(mountain_rewards):.2f}")
     plot_learning_curve(mountain_rewards, "MountainCar-v0", log_dir, window)

@@ -68,3 +68,19 @@
                 theta     : góc của pole
                 theta_dot : vận tốc góc
         -> State space continuous
+        - Action (A)
+            A = {0, 1}
+
+            0 : đẩy xe sang trái
+            1 : đẩy xe sang phải
+        -> Action space discrete () 
+        - Reward (R)
+            R = +1 cho mỗi bước nếu chưa thất bại
+        -> Episode càng lâu → reward càng lớn.
+        - Terminal condition
+            Episode kết thúc khi:
+            |theta| > 12° 
+            hoặc
+            |x| > 2.4
+            hoặc
+            step > 500
