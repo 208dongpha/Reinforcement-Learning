@@ -1,0 +1,109 @@
+2026-03-23 09:01:53,514 - ==== FrozenLake Q-Learning Training ====
+2026-03-23 09:01:53,520 - Number of states: 16
+2026-03-23 09:01:53,521 - Number of actions: 4
+2026-03-23 09:01:53,521 - Initialize Q-table: 
+2026-03-23 09:01:53,521 - [[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+2026-03-23 09:01:53,626 - Epsilon 0.08157186144027828 | Avg reward: 0.000 | Epsilon: 0.082
+2026-03-23 09:01:53,626 - Win rate (last 500): 0.000
+2026-03-23 09:01:53,758 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:53,759 - Win rate (last 500): 0.000
+2026-03-23 09:01:53,895 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:53,895 - Win rate (last 500): 0.000
+2026-03-23 09:01:54,041 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:54,042 - Win rate (last 500): 0.000
+2026-03-23 09:01:54,184 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:54,184 - Win rate (last 500): 0.000
+2026-03-23 09:01:54,330 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:54,331 - Win rate (last 500): 0.000
+2026-03-23 09:01:54,473 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:54,474 - Win rate (last 500): 0.000
+2026-03-23 09:01:54,612 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:54,612 - Win rate (last 500): 0.000
+2026-03-23 09:01:54,766 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:54,767 - Win rate (last 500): 0.000
+2026-03-23 09:01:54,920 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:54,920 - Win rate (last 500): 0.000
+2026-03-23 09:01:55,069 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:55,070 - Win rate (last 500): 0.000
+2026-03-23 09:01:55,224 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:55,224 - Win rate (last 500): 0.000
+2026-03-23 09:01:55,378 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:55,378 - Win rate (last 500): 0.000
+2026-03-23 09:01:55,520 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:55,521 - Win rate (last 500): 0.000
+2026-03-23 09:01:55,656 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:55,657 - Win rate (last 500): 0.000
+2026-03-23 09:01:55,802 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:55,802 - Win rate (last 500): 0.000
+2026-03-23 09:01:55,954 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:55,954 - Win rate (last 500): 0.000
+2026-03-23 09:01:56,086 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:56,086 - Win rate (last 500): 0.000
+2026-03-23 09:01:56,236 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:56,236 - Win rate (last 500): 0.000
+2026-03-23 09:01:56,376 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:56,376 - Win rate (last 500): 0.000
+2026-03-23 09:01:56,521 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:56,521 - Win rate (last 500): 0.000
+2026-03-23 09:01:56,660 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:56,660 - Win rate (last 500): 0.000
+2026-03-23 09:01:56,803 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:56,803 - Win rate (last 500): 0.000
+2026-03-23 09:01:56,943 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:56,943 - Win rate (last 500): 0.000
+2026-03-23 09:01:57,093 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:57,093 - Win rate (last 500): 0.000
+2026-03-23 09:01:57,230 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:57,231 - Win rate (last 500): 0.000
+2026-03-23 09:01:57,368 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:57,369 - Win rate (last 500): 0.000
+2026-03-23 09:01:57,514 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:57,514 - Win rate (last 500): 0.000
+2026-03-23 09:01:57,700 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:57,700 - Win rate (last 500): 0.000
+2026-03-23 09:01:57,853 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:57,853 - Win rate (last 500): 0.000
+2026-03-23 09:01:57,991 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:57,991 - Win rate (last 500): 0.000
+2026-03-23 09:01:58,130 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:58,130 - Win rate (last 500): 0.000
+2026-03-23 09:01:58,282 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:58,283 - Win rate (last 500): 0.000
+2026-03-23 09:01:58,427 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:58,428 - Win rate (last 500): 0.000
+2026-03-23 09:01:58,570 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:58,570 - Win rate (last 500): 0.000
+2026-03-23 09:01:58,711 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:58,711 - Win rate (last 500): 0.000
+2026-03-23 09:01:58,858 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:58,859 - Win rate (last 500): 0.000
+2026-03-23 09:01:58,996 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:58,997 - Win rate (last 500): 0.000
+2026-03-23 09:01:59,143 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:59,144 - Win rate (last 500): 0.000
+2026-03-23 09:01:59,285 - Epsilon 0.01 | Avg reward: 0.000 | Epsilon: 0.010
+2026-03-23 09:01:59,286 - Win rate (last 500): 0.000
+2026-03-23 09:01:59,286 - Training wins: 0/20000
+2026-03-23 09:01:59,286 - Best avg reward: 0.000 at episode 500
+2026-03-23 09:01:59,287 - Best episode (avg reward): 500
+2026-03-23 09:01:59,308 - Q-table saved: lab2/logs/qtable_20260323_090153.txt
+2026-03-23 09:01:59,308 - Best action per state: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+2026-03-23 09:01:59,308 - Best action at start state (0): 0
+2026-03-23 09:01:59,753 - Learning curve saved: lab2/logs/learning_curve_20260323_090153.png
+2026-03-23 09:02:00,108 - Win rate curve saved: lab2/logs/winrate_curve_20260323_090153.png
+2026-03-23 09:02:00,128 - Win rate: 0.00

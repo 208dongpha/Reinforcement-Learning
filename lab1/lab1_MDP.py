@@ -53,9 +53,9 @@ class MDPCartPole:
         discrete = []
 
         for i in range(len(state)):
-            bucket_index = np.digitize(
-                state[i], self.buckets[i]
-            )
+            bucket_index = int(np.digitize(state[i], self.buckets[i]))
+            # clamp ve dung mien 0..n_buckets-1
+            bucket_index = min(max(bucket_index, 0), self.n_buckets - 1)
 
             discrete.append(bucket_index)
         return tuple(discrete)
@@ -172,7 +172,7 @@ def value_iteration(mdp, gamma=0.99, theta=1e-6, max_interations=500):
                     best_value = value
                     best_action = a
             mdp.policy[s] = best_action
-        return mdp.V, mdp.policy, iterations_used
+        return defaultdict(float, mdp.V), defaultdict(int, mdp.policy), iterations_used
     
 # POLICY ITERATION
 def policy_iteration(mdp, gamma=0.99, max_iterations=100):
@@ -180,6 +180,8 @@ def policy_iteration(mdp, gamma=0.99, max_iterations=100):
     print("\nRunning POLICY ITERATION")
 
     states = list({s for (s, a) in mdp.transitions.keys()})
+    # reset value function de so sanh cong bang voi Value Iteration
+    mdp.V = defaultdict(float)
 
     # initialize random policy
     for s in states:
@@ -244,7 +246,7 @@ def policy_iteration(mdp, gamma=0.99, max_iterations=100):
     if iterations_used == 0:
         iterations_used = max_iterations
 
-    return mdp.V, mdp.policy, iterations_used
+    return defaultdict(float, mdp.V), defaultdict(int, mdp.policy), iterations_used
 
 
 # TEST POLICY

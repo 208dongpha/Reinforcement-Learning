@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="100%" height="100%" fill="white" />
+  <text x="450" y="35" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">
+    Average Reward Comparison (CartPole)
+  </text>
+
+  <!-- Axes -->
+  <line x1="90" y1="400" x2="860" y2="400" stroke="#333" stroke-width="2" />
+  <line x1="90" y1="60" x2="90" y2="400" stroke="#333" stroke-width="2" />
+
+  <!-- Grid + Y ticks -->
+  <line x1="84" y1="400" x2="860" y2="400" stroke="#e0e0e0" stroke-width="1" />
+  <text x="78" y="405" text-anchor="end" font-family="Arial" font-size="12" fill="#333">0</text>
+
+  <line x1="84" y1="327" x2="860" y2="327" stroke="#e0e0e0" stroke-width="1" />
+  <text x="78" y="332" text-anchor="end" font-family="Arial" font-size="12" fill="#333">25</text>
+
+  <line x1="84" y1="254" x2="860" y2="254" stroke="#e0e0e0" stroke-width="1" />
+  <text x="78" y="259" text-anchor="end" font-family="Arial" font-size="12" fill="#333">50</text>
+
+  <line x1="84" y1="181" x2="860" y2="181" stroke="#e0e0e0" stroke-width="1" />
+  <text x="78" y="186" text-anchor="end" font-family="Arial" font-size="12" fill="#333">75</text>
+
+  <line x1="84" y1="108" x2="860" y2="108" stroke="#e0e0e0" stroke-width="1" />
+  <text x="78" y="113" text-anchor="end" font-family="Arial" font-size="12" fill="#333">100</text>
+
+  <line x1="84" y1="35" x2="860" y2="35" stroke="#e0e0e0" stroke-width="1" />
+  <text x="78" y="40" text-anchor="end" font-family="Arial" font-size="12" fill="#333">125</text>
+
+  <!-- Bars -->
+  <!-- Values: Random=22.75, PI=46.7, VI=102.1 -->
+  <rect x="180" y="334" width="130" height="66" fill="#9e9e9e" />
+  <text x="245" y="322" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold">22.75</text>
+  <text x="245" y="426" text-anchor="middle" font-family="Arial" font-size="13">Random Agent</text>
+
+  <rect x="385" y="265" width="130" height="135" fill="#42a5f5" />
+  <text x="450" y="253" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold">46.70</text>
+  <text x="450" y="426" text-anchor="middle" font-family="Arial" font-size="13">Policy Iteration</text>
+
+  <rect x="590" y="104" width="130" height="296" fill="#66bb6a" />
+  <text x="655" y="92" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold">102.10</text>
+  <text x="655" y="426" text-anchor="middle" font-family="Arial" font-size="13">Value Iteration</text>
+
+  <!-- Y axis title -->
+  <text transform="translate(28,230) rotate(-90)" text-anchor="middle" font-family="Arial" font-size="14">
+    Average Reward
+  </text>
+</svg>

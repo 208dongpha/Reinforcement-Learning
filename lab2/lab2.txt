@@ -1,0 +1,69 @@
+PHÂN TÍCH KẾT QUẢ LAB2 (FrozenLake Q-learning)
+
+Nguồn dữ liệu:
+- training_20260317_204454.log
+- learning_curve_20260317_204454.png
+- qtable_20260317_204454.txt
+
+1) Tóm tắt từ log training
+- Tổng số tập: 20000 episode, Training wins: 4773/20000.
+- Best avg reward: 0.318 tại episode 13000.
+- Win rate cuối cùng (evaluate): 0.68.
+- Win rate theo cửa sổ 500 episode tăng rõ từ 0.024 -> ~0.262, sau đó dao động quanh 0.20-0.32 khi epsilon = 0.05.
+
+2) Phân tích Q-table (qtable_20260317_204454.txt)
+- Q-table có giá trị cao ở các state gần đích (ví dụ state 14 có Q max ~0.692; state 10 có Q max ~0.517; state 9 có Q max ~0.543).
+- Các hàng toàn 0 tương ứng với state hố hoặc terminal (không có giá trị kỳ vọng để học).
+- Best action per state (log): [0, 3, 1, 3, 0, 0, 2, 0, 3, 1, 0, 0, 0, 2, 2, 0].
+=> Policy greedy đã rõ ràng, không còn ngẫu nhiên.
+
+3) Phân tích learning curve
+- Trục X là Episode (x100). Đường Avg reward và Win rate tăng nhanh giai đoạn đầu (0.02 -> ~0.25-0.30).
+- Về sau dao động quanh mức ~0.20-0.35 do môi trường is_slippery và vẫn còn epsilon = 0.05.
+
+TRẢ LỜI CÁC CÂU HỎI
+1) Agent học được đường đi tối ưu?
+- Gần tối ưu / tốt. Win rate ~0.68 và Q-table thể hiện giá trị lớn ở các state gần đích.
+- Vì môi trường ngẫu nhiên (slippery), policy tối ưu vẫn có thể thất bại, nên không đạt 100%.
+
+2) Q-table hội tụ?
+- Hội tụ xấp xỉ: Avg reward và Win rate ổn định sau ~3000 episode, dao động quanh một mức.
+- Không hội tụ tuyệt đối vì còn epsilon = 0.05 và môi trường ngẫu nhiên.
+
+3) Tỉ lệ thắng tăng dần theo số episode?
+- Có. Win rate tăng rõ ở giai đoạn đầu, sau đó ổn định (dao động) ở mức cao hơn.
+
+BỔ SUNG GIẢI THÍCH
+1) Định nghĩa Q-table
+- Q-table là bảng giá trị hành động: kích thước |S| x |A|.
+- Mỗi phần tử Q(s,a) là giá trị kỳ vọng của tổng reward có chiết khấu khi ở trạng thái s, chọn hành động a, rồi làm theo policy tối ưu.
+
+2) Value iteration cho action value được tính như thế nào?
+- Với mỗi state s và action a, ta ước lượng:
+  Q(s,a) = E[ r + gamma * max_{a'} Q(s', a') ]
+- Đây là Bellman optimality cho Q-value: lấy reward tức thời r cộng với giá trị tốt nhất ở trạng thái kế tiếp.
+
+3) Giải thích công thức cập nhật trong code
+Q[state, action] = old_value + alpha * ( reward + gamma * max(Q[next_state]) - old_value )
+- old_value: giá trị Q hiện tại.
+- reward + gamma * max(Q[next_state]): mục tiêu TD (TD target).
+- (target - old_value): sai số TD (TD error).
+- alpha: learning rate, quyết định cập nhật nhanh hay chậm.
+=> Q-learning là off-policy vì dùng max(Q[next_state]) (hành động tối ưu giả định).
+
+4) Bản đồ 16 ô, Q-table 16 dòng x 4 cột nghĩa là gì?
+- FrozenLake 4x4 có 16 state (0..15), nên Q-table có 16 dòng.
+- Mỗi dòng có 4 cột cho 4 hành động (LEFT, DOWN, RIGHT, UP theo thứ tự mặc định của Gym).
+- Giá trị Q không phải reward ngay lập tức, mà là kỳ vọng tổng reward về sau.
+- Reward tức thời được lấy từ môi trường:
+  +1 khi tới GOAL, còn lại thường là 0 (kể cả khi rơi hố).
+- Q(s,a) tăng dần khi nhiều lần chọn a từ s dẫn tới trạng thái tốt hơn.
+
+5) Cách suy ra bước đi (policy) từ Q-table
+- Dùng greedy policy: a* = argmax_a Q(s,a).
+- Bắt đầu từ state 0, lặp:
+  1) Chọn a* theo Q.
+  2) Thực hiện action trong môi trường để lấy state tiếp theo.
+  3) Lặp tới khi done (GOAL hoặc HOLE).
+- Nếu cần ánh xạ state -> (row, col): row = s // 4, col = s % 4.
+  => Dựa vào đó có thể vẽ đường đi trên bản đồ.

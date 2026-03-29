@@ -1,11 +1,11 @@
 Model estimation episodes: 10000
 Discrete buckets per dimension: 10
-Observed discrete states: 367
-Observed state-action pairs: 734
-Observed transitions: 2917
+Observed discrete states: 338
+Observed state-action pairs: 676
+Observed transitions: 2811
 
 Value Iteration iterations: 500
-Value Iteration reward: 102.1
-Policy Iteration iterations: 46
-Policy Iteration reward: 46.7
-Random Agent reward: 22.75
+Value Iteration reward: 21.3
+Policy Iteration iterations: 15
+Policy Iteration reward: 18.35
+Random Agent reward: 22.5
