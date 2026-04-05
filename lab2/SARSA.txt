@@ -1,0 +1,76 @@
+CÂU 1) Trình bày nguyên lý hoạt động của thuật toán Q-learning. Vì sao Q-learning được gọi là phương pháp off-policy?
+
+Q-learning là thuật toán học giá trị hành động Q(s,a) theo quy tắc cập nhật Temporal Difference:
+
+Q(s,a) <- Q(s,a) + alpha * [r + gamma * max_a' Q(s',a') - Q(s,a)]
+
+Ý nghĩa:
+- Agent ở trạng thái s, chọn hành động a, nhận thưởng r, chuyển sang s'.
+- Thuật toán dùng mục tiêu r + gamma * max_a' Q(s',a') để kéo Q(s,a) dần đến giá trị tốt hơn.
+- Lặp nhiều episode thì Q-table dần hội tụ.
+
+Q-learning là off-policy vì:
+- Khi cập nhật, nó luôn dùng max_a' Q(s',a') (hành động tối ưu giả định),
+- Không cần đúng với hành động thực tế agent đã chọn theo epsilon-greedy ở bước đó.
+=> Policy để học khác policy để hành động, nên gọi là off-policy.
+
+
+CÂU 2) So sánh công thức cập nhật Q-value của Q-learning và SARSA. Sự khác biệt này ảnh hưởng thế nào đến chiến lược học?
+
+Q-learning:
+Q(s,a) <- Q(s,a) + alpha * [r + gamma * max_a' Q(s',a') - Q(s,a)]
+
+SARSA:
+Q(s,a) <- Q(s,a) + alpha * [r + gamma * Q(s',a') - Q(s,a)]
+(với a' là hành động tiếp theo thực sự được chọn theo policy hiện tại, thường là epsilon-greedy).
+
+Khác biệt cốt lõi:
+- Q-learning: dùng best action giả định ở s' (tham vọng hơn).
+- SARSA: dùng action thực tế sẽ đi tiếp ở s' (thận trọng hơn).
+
+Ảnh hưởng:
+- Q-learning thường học nhanh hơn và đôi khi đạt reward cao hơn.
+- SARSA thường ổn định/an toàn hơn trong môi trường có rủi ro hoặc nhiễu (như is_slippery=True).
+
+
+CÂU 3) Giải thích vai trò của chính sách epsilon-greedy trong hai thuật toán. Điều gì xảy ra nếu epsilon quá lớn hoặc quá nhỏ?
+
+Vai trò epsilon-greedy:
+- Cân bằng giữa khám phá (explore) và khai thác (exploit).
+- Với xác suất epsilon: chọn ngẫu nhiên để khám phá.
+- Với xác suất 1-epsilon: chọn hành động tốt nhất hiện tại theo Q-table.
+
+Nếu epsilon quá lớn:
+- Agent đi ngẫu nhiên nhiều, học chậm, đường reward dao động mạnh.
+- Khó hội tụ policy tốt trong thời gian ngắn.
+
+Nếu epsilon quá nhỏ (đặc biệt ngay từ đầu):
+- Agent ít khám phá, dễ mắc kẹt ở policy cục bộ kém.
+- Có thể bỏ lỡ đường đi tốt hơn.
+
+
+CÂU 4) Trong môi trường rủi ro cao, thuật toán Q-learning hay SARSA sẽ học an toàn hơn? Vì sao?
+
+SARSA thường an toàn hơn.
+
+Lý do:
+- SARSA cập nhật theo chính hành vi thực tế (bao gồm khả năng explore),
+- Nên nó nhìn thấy rủi ro của việc có thể chọn hành động chưa tối ưu ở bước sau,
+- Do đó có xu hướng học policy thận trọng hơn, tránh vùng nguy hiểm tốt hơn.
+
+Ngược lại, Q-learning dùng max Q(s',a') nên hơi lạc quan, đôi khi đánh giá cao các hướng đi gần rủi ro.
+
+
+CÂU 5) Nếu đồ thị tổng reward theo episode dao động mạnh hoặc không tăng theo thời gian, nêu ba nguyên nhân và cách khắc phục.
+
+1) Epsilon decay không phù hợp
+- Nguyên nhân: decay quá nhanh -> hết khám phá sớm; decay quá chậm -> nhiễu kéo dài.
+- Khắc phục: thử các mức decay (ví dụ 0.99, 0.995, 0.999), chọn mức cho win rate tốt và ổn định.
+
+2) Hyperparameters chưa hợp lý (alpha, gamma)
+- Nguyên nhân: alpha quá lớn gây cập nhật giật, quá nhỏ học chậm; gamma không phù hợp horizon bài toán.
+- Khắc phục: tuning grid nhỏ, ví dụ alpha trong [0.05, 0.1, 0.2], gamma trong [0.95, 0.99].
+
+3) Số episode hoặc cách đánh giá chưa đủ
+- Nguyên nhân: train quá ít episode, hoặc chỉ nhìn reward raw nên tưởng không học.
+- Khắc phục: tăng episode, dùng moving average/cumulative reward, và đánh giá greedy policy bằng win rate trên nhiều test episodes (ví dụ 500-1000).

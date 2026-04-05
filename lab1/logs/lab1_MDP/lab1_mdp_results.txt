@@ -1,11 +1,24 @@
-Model estimation episodes: 10000
-Discrete buckets per dimension: 10
-Observed discrete states: 338
-Observed state-action pairs: 676
-Observed transitions: 2811
+Đang ước lượng mô hình từ mẫu thử...
+  Đã lấy mẫu 1000/10000 episodes
+  Đã lấy mẫu 2000/10000 episodes
+  Đã lấy mẫu 3000/10000 episodes
+  Đã lấy mẫu 4000/10000 episodes
+  Đã lấy mẫu 5000/10000 episodes
+  Đã lấy mẫu 6000/10000 episodes
+  Đã lấy mẫu 7000/10000 episodes
+  Đã lấy mẫu 8000/10000 episodes
+  Đã lấy mẫu 9000/10000 episodes
+  Đã lấy mẫu 10000/10000 episodes
+Số lượng buckets mỗi chiều: 10
 
-Value Iteration iterations: 500
-Value Iteration reward: 21.3
-Policy Iteration iterations: 15
-Policy Iteration reward: 18.35
-Random Agent reward: 22.5
+Đang chạy VALUE ITERATION...
+
+Đang chạy POLICY ITERATION...
+Policy hội tụ tại vòng lặp 18
+
+--- KẾT QUẢ SO SÁNH ---
+Value Iteration:  Reward trung bình = 197.98, Vòng lặp = 500
+Policy Iteration: Reward trung bình = 175.38, Vòng lặp = 18
+Random Agent:     Reward trung bình = 22.59
+
+Đã lưu biểu đồ vào tệp 'lab1_comparison_plot.png'
