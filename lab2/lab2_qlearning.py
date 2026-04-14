@@ -101,6 +101,8 @@ def train(env, Q, episodes, max_steps, alpha, gamma, epsilon, epsilon_decay, eps
         for step in range(max_steps):
             action = choose_action(state , Q,   epsilon, env.action_space.n)
             next_state, reward, terminated, truncated, _ = env.step(action)
+            if next_state == state:
+                reward -= 0.01
             done = terminated or truncated
             update_qtable(Q, state, action, reward, next_state, alpha, gamma)
 

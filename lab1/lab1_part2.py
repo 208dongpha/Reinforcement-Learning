@@ -39,39 +39,42 @@ def explore_env(env_name, log_file=None):
 
     env.close()
 
-# Random Agent
 def random_agent(env_name, episodes=100, log_file=None):
     env = gym.make(env_name)
     all_rewards = []
+    
+    # Giúp in các mảng Numpy(ví dụ: 4 chữ số thập phân)
+    np.set_printoptions(precision=4, suppress=True)
 
     for ep in range(episodes):
         obs, info = env.reset()
         done = False
         total_reward = 0
+        step_count = 0
+
+        print(f"\n{'='*20} START EPISODE {ep+1} ({env_name}) {'='*20}")
 
         while not done:
+            # Chọn hành động ngẫu nhiên
             action = env.action_space.sample()
+            
+            # In State hiện tại và Action được chọn
+            # State: trạng thái agent nhìn thấy trước khi hành động
+            # Action: hành động agent thực hiện tại trạng thái đó
+            print(f"Step {step_count:3d} | State: {obs} | Action: {action}")
+            
+            # Thực thi hành động
             obs, reward, terminated, truncated, info = env.step(action)
+            
             done = terminated or truncated
             total_reward += reward
+            step_count += 1
 
         all_rewards.append(total_reward)
+        print(f"--- Episode {ep+1} Finished | Total Steps: {step_count} | Total Reward: {total_reward} ---")
 
-        msg = f"{env_name} - Episode {ep+1} Reward: {total_reward}"
-        print(msg)
-
-        # Ghi vào file log nếu có
-        if log_file is not None:
-            with open(log_file, "a") as f:
-                f.write(msg + "\n")
-        
-    # Tính và ghi average reward
     avg_reward = np.mean(all_rewards)
-    avg_msg = f"{env_name} Average Reward: {avg_reward:.2f}"
-    print(avg_msg)
-    if log_file is not None:
-        with open(log_file, "a") as f:
-            f.write(avg_msg + "\n")
+    print(f"\n{env_name} Average Reward over {episodes} episodes: {avg_reward:.2f}")
 
     env.close()
     return all_rewards
@@ -105,7 +108,6 @@ if __name__ == "__main__":
     os.makedirs(log_dir, exist_ok=True)
     log_file = os.path.join(log_dir, "episode_log.txt")
 
-    # Xóa nội dung cũ của log file nếu tồn tại
     open(log_file, "w").close()
 
     # Redirect tất cả print vào file log
